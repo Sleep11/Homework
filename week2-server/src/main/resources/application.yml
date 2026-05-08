@@ -1,0 +1,18 @@
+#springboot多环境配置
+# SpringMail配置
+spring:
+#  mail: # 配置邮件发送
+#    host: smtp.qq.com   # 设置邮箱主机(服务商),这里使用QQ邮件服务器
+#    username: 自己的QQ账号  # 设置用户名
+#    password: 自己的授权码 # 设置密码，该处的密码是QQ邮箱开启SMTP的授权码而非QQ密码
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true  # 必须进行授权认证，它的目的就是阻止他人任意乱发邮件
+#          starttls: #SMTP加密方式:连接到一个TLS保护连接
+#            enable: true
+#            required: true
+  profiles:
+    active: dev
+
+
