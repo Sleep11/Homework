@@ -2,6 +2,7 @@ package com.bwie.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.bwie.domain.dto.PageDto;
 import com.bwie.domain.dto.QueryDto;
 import com.bwie.domain.vo.GoodsVo;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,11 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
         return getBaseMapper().goodsVoList(queryDto);
     }
 
+
     @Override
-    public com.baomidou.mybatisplus.extension.plugins.pagination.Page<GoodsVo> pageList(QueryDto queryDto) {
-        Page<GoodsVo> newPage = new Page<>(queryDto.getPageNum(), queryDto.getPageSize());
-        return getBaseMapper().pageList(newPage,queryDto);
+    public com.baomidou.mybatisplus.extension.plugins.pagination.Page<GoodsVo> pageList(QueryDto queryDto, PageDto pageDto) {
+        Page<GoodsVo> page = new Page<>(pageDto.getPageNum(), pageDto.getPageSize());
+        return getBaseMapper().pageList(page,queryDto);
 
     }
 }

@@ -29,8 +29,7 @@ public class QueryDto implements Serializable  {
     private String start;
     private String end;
 
-    private Integer pageNum=1;
-    private Integer pageSize=3;
+
 
 
 }

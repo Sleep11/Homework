@@ -65,6 +65,7 @@ public class AuthController {
 
         redisTemplate.opsForValue().set("user:"+realUser.getUsername(),realUser);
 
+
         String token = JWTUtils.createToken(realUser.getId().toString(), 30);
         return R.ok().data("token",token);
     }
@@ -91,6 +92,27 @@ public class AuthController {
         String userId = JWTUtils.getUserId(token);
 
         List<Menu> menuList = menuService.myList(userId);
+
+        redisTemplate.opsForValue().set("menu",menuList);
+
+        redisTemplate.opsForList().leftPush("menuList",menuList);
+
+        List list = redisTemplate.opsForList().range("menuList", 0, -1);
+
+        for (Object o : list) {
+            System.out.println(o);
+        }
+
+        System.out.println("planA");
+
+
+        List<Menu> menus = (List<Menu>) redisTemplate.opsForValue().get("menu");
+
+        for (Menu menu : menus) {
+            System.out.println(menu);
+        }
+
+
         //配置
         TreeNodeConfig treeNodeConfig = new TreeNodeConfig();
 
